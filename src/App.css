@@ -1,0 +1,27 @@
+.app{
+  display: flex;
+  flex-direction: row;
+
+  background-color: #282c34;
+  min-height: 100vh;
+  
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: white;
+}
+
+.app > div {
+  margin: 10px;
+  padding: 20px;
+
+  background-color: #474c57;
+}
+
+.left-panel {
+  
+}
+
+.app a {
+  color: #61dafb;
+}
