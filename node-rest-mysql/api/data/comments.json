@@ -1,0 +1,18 @@
+{
+    "comments": {
+        "data": [
+            {
+                "id": "1",
+                "text": "eu sou um comentário"
+            },
+            {
+                "id": "2",
+                "text": "eu sou o segundo comentário"
+            },
+            {
+                "id": "3",
+                "text": "eu sou o terceiro comentário"
+            }
+        ]
+    } 
+}

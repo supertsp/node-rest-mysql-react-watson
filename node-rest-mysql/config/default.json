@@ -1,0 +1,13 @@
+{
+    "server": {
+        "port": 8080
+    },
+
+    "dataBase": {
+        "host": "remotemysql.com",
+        "port": 3306,
+        "user": "ijufExPpC1",
+        "password": "HIgI6YU8Q9",
+        "schema": "ijufExPpC1"
+    }
+}

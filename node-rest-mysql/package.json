@@ -1,0 +1,19 @@
+{
+  "name": "node-rest-mysql",
+  "version": "1.0.0",
+  "description": "A example of Node.js, Rest APIs and MySQL integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tiago Penha Pedroso",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "config": "^3.3.3",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7"
+  }
+}

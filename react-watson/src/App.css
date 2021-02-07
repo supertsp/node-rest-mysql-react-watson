@@ -1,0 +1,113 @@
+.app{
+  display: flex;
+  flex-direction: row;
+
+  background-color: #282c34;
+  min-height: 100vh;
+  
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.app > div {
+  margin: 10px;
+  padding: 20px;
+
+  background-color: #474c57;
+}
+
+.app a {
+  color: #61dafb;
+}
+
+.form-item * {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.form-item textarea {
+  width: 25em;
+  height: 10em;
+  resize: none;
+
+  background-color: #606570;
+  border: 2px solid #404550;
+
+  font-size: 14px;
+  color: #fff;
+}
+
+.form-item button {
+  width: 100%;
+}
+
+button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  background-color: #727171;
+  border: 2px solid #404550;
+  border-radius: 5px;
+
+  font-weight: bold;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #8d8b8b;
+  border: 2px solid #5d6370;
+  border-radius: 5px;
+  
+  color: #36393f;
+}
+
+.right-panel {
+  width: 358px;
+  min-height: 235px;
+}
+
+.right-panel-title {
+  position: relative;
+  top: 0px;
+  left: 0px;
+
+  margin-bottom: 30px;
+
+  font-size: 14px;  
+}
+
+.comment-item {
+  display: flex;
+  flex-direction: row;
+
+  margin-bottom: 30px;
+
+  font-weight: normal;
+}
+
+.comment-item-text {
+  margin-right: 15px;
+}
+
+.comment-item-text {
+  font-size: 15px;
+}
+
+.comment-item-button {
+  text-align: right;
+}
+
+
+.comment-item-button button {
+  min-width: 60px;
+
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+}
