@@ -19,7 +19,7 @@ const synthesizeParams = {
   voice: 'pt-BR_IsabelaV3Voice',
 };
 
-console.log("\n\niniciando download da voz");
+console.log("\n\nIniciando download da voz");
 
 
 textToSpeech.synthesize(synthesizeParams)
@@ -30,7 +30,7 @@ textToSpeech.synthesize(synthesizeParams)
   })
   .then(buffer => {
     fs.writeFileSync('./voices/vozComentario1.wav', buffer);
-    console.log("\n\nVoz salva em: ./voices/vozComentario1.wav");
+    console.log("Voz salva em: ./voices/vozComentario1.wav");
   })
   .catch(err => {
     console.log('error:', err);
