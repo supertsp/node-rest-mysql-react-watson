@@ -2,16 +2,6 @@ import './App.css';
 import React from 'react';
 import Validator from './libs/Validator';
 import axios from 'axios';
-// import TextToSpeechV1 from 'ibm-watson/text-to-speech/v1';
-// import { IamAuthenticator } from 'ibm-watson/auth';
-
-// const textToSpeech = new TextToSpeechV1({
-//   authenticator: new IamAuthenticator({
-//     apikey: 'ERjFGLJ68Xg8ABj1mED66Pi_hNLlvtm10AhN7nQ36031',
-//   }),
-//   serviceUrl: 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/edfd6ca1-9a4e-41ad-9184-e2404a0fcf52',
-// });
-
 
 class App extends React.Component {
   
@@ -20,17 +10,13 @@ class App extends React.Component {
   }
 
   constructor(props) {
-    super(props);
-    
-    console.log('constructor');
-    // this.getListOfComments(null, true);
+    super(props);    
   }
 
   callApiCommentsList = (event) => {
     axios.get(`http://localhost:8080/api/v1/comments`)
       .then(response => {
-        console.log("api respondeu ok: ", response);
-        //text: JSON.stringify(response.data?.data),
+        console.log("\ncallApiCommentsList:: Response Ok: ", response);
 
         if (Validator.isAxiosResponseOkAndHasData(response)) {
           this.setState({
@@ -47,7 +33,7 @@ class App extends React.Component {
 
     axios.post(`http://localhost:8080/api/v1/comments`, { text: newText })
       .then(response => {
-        console.log("api respondeu ok: ", response);
+        console.log("\ncallApiCommentsCreate:: Response Ok: ", response);
 
         this.callApiCommentsList(event);
       });
@@ -58,7 +44,7 @@ class App extends React.Component {
 
     axios.delete(`http://localhost:8080/api/v1/comments/${idText}`)
       .then(response => {
-        console.log("api respondeu ok: ", response);
+        console.log("\ncallApiCommentsDelete:: Response Ok: ", response);
 
         this.callApiCommentsList(event);
       });
@@ -68,28 +54,25 @@ class App extends React.Component {
 
   //qdo renderizado no início
   componentDidMount() {
-    console.log("chamando api List");
+    console.log("\ncomponentDidMount...");
+
     this.callApiCommentsList();
   }
 
   eventHandler_submitFormNewComment = (event) => {
     event.preventDefault();
-    console.log("submit", event.target[0].value);
-    this.callApiCommentsCreate(event)
-  }
 
-  eventHandler_submitFormNewComment = (event) => {
-    event.preventDefault();
-    console.log("submit - FormNewComment", event.target[0].value);
+    console.log("\neventHandler_submitFormNewComment:: Event: ", event);
+    
     this.callApiCommentsCreate(event)
   }
 
   eventHandler_buttonListen = (event) => {
-    console.log("button Listen", event);    
+    console.log("eventHandler_buttonListen", event);    
   }
 
   eventHandler_buttonDelete = (event) => {
-    console.log("button Delte");
+    console.log("eventHandler_buttonDelete");
 
     this.callApiCommentsDelete(event)
   }

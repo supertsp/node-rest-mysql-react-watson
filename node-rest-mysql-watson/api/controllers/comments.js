@@ -22,7 +22,7 @@ module.exports = server => {
     controller.save = (request, response) => {
         console.log(`\n${(new Date()).toJSON().replace('T', ' ')} - Access via POST: ${request.url}`);
 
-        MySql.executeQuery(`INSERT INTO comments (id, text) VALUES (NULL, '${request.body.text}')`)
+        MySql.executeQuery(`INSERT INTO comments (id, text, audio) VALUES (NULL, '${request.body.text}', null)`)
             .then(result => {
                 if (result.insertId && result.insertId > 0) {
                     MySql.executeQuery(`SELECT * FROM comments as c WHERE c.id = (SELECT MAX(id) FROM comments)`)

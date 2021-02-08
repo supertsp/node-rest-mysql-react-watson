@@ -1,5 +1,5 @@
 {
-  "name": "node-rest-mysql",
+  "name": "node-rest-mysql-watson",
   "version": "1.0.0",
   "description": "A example of Node.js, Rest APIs and MySQL integration",
   "main": "index.js",

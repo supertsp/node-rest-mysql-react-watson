@@ -19,6 +19,9 @@ const synthesizeParams = {
   voice: 'pt-BR_IsabelaV3Voice',
 };
 
+console.log("\n\niniciando download da voz");
+
+
 textToSpeech.synthesize(synthesizeParams)
   .then(response => {
     // only necessary for wav formats,
@@ -26,11 +29,14 @@ textToSpeech.synthesize(synthesizeParams)
     return textToSpeech.repairWavHeaderStream(response.result);
   })
   .then(buffer => {
-    fs.writeFileSync('./voices/hello_world.wav', buffer);
+    fs.writeFileSync('./voices/vozComentario1.wav', buffer);
+    console.log("\n\nVoz salva em: ./voices/vozComentario1.wav");
   })
   .catch(err => {
     console.log('error:', err);
   });
+
+
 
   //API SERVER
   server.listen(port, () => {
