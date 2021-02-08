@@ -67,16 +67,26 @@ button:hover {
 .right-panel {
   width: 358px;
   min-height: 235px;
+  max-height: 480px;
+
+  overflow-y: scroll;
 }
 
 .right-panel-title {
-  position: relative;
-  top: 0px;
+  position: sticky;
+  top: -10px;
   left: 0px;
 
-  margin-bottom: 30px;
+  height: 20px;
 
-  font-size: 14px;  
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  background-color: #474c57;
+
+  font-size: 14px;
+  
 }
 
 .comment-item {
@@ -93,10 +103,12 @@ button:hover {
 }
 
 .comment-item-text {
+  width: 278px;
   font-size: 15px;
 }
 
 .comment-item-button {
+  width: 65px;
   text-align: right;
 }
 

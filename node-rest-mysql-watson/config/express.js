@@ -2,6 +2,7 @@ const express = require('express');
 const config = require('config');
 const consign = require('consign');
 const MySql = require('../libs/MySql');
+const cors = require('cors');
 
 //init MySQL
 MySql.setConnectionParams(
@@ -14,8 +15,14 @@ MySql.setConnectionParams(
 
 module.exports = () => {
     const server = express();
+    
+    // CORS DISABLED FOR LOCALHOST
+    server.use(cors());
+    
     server.set('port', process.env.PORT || config.get('server.port'));
     server.use(express.json());
+
+    
 
     //config Auto Paths into Server
     consign({cwd: 'api'})

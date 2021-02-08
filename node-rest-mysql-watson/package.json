@@ -10,8 +10,10 @@
   "author": "Tiago Penha Pedroso",
   "license": "Apache-2.0",
   "dependencies": {
+    "binary-file": "^0.2.3",
     "config": "^3.3.3",
     "consign": "^0.1.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7"
