@@ -2,7 +2,7 @@
 
 [![node badge][node-img]][node]
 
-[node-img]:        https://img.shields.io/node/v/mocha.svg
+[node-img]:        https://img.shields.io/badge/Node-%3E%3D14.15.4-green
 [node]:            https://nodejs.org/en/
 
 
