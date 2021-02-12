@@ -24,7 +24,7 @@ const get = async (id) => {
 
 const create = async (body) => {
   const { results: { insertId: id } } = await connection.query('INSERT INTO comments SET ?', body);
-  textToSpeech.synthesize(id, body.text);
+  await textToSpeech.synthesize(id, body.text);
   return get(id);
 };
 

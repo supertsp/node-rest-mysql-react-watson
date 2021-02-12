@@ -1,5 +1,11 @@
 # Como executar esse Projeto
 
+[![node badge][node-img]][node]
+
+[node-img]:        https://img.shields.io/node/v/mocha.svg
+[node]:            https://nodejs.org/en/
+
+
 Este projeto foi criado utilizando as seguintes tecnologias:
 * `node-rest-mysql-watson` (back-end): API Rest, baseada em Node.js, que integra MySQL e IBM Watson
 * `site-react` (front-end): Webpage que consome os serviços Rest

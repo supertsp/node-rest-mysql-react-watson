@@ -1,25 +1,26 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Folders that should NOT be included.
+target/
+build/
+bin/
+.metadata/
+node_modules/
+.pnp/
+.pnp.js/
+coverage/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
+# Extensions that should NOT be included.
+*.db
 .DS_Store
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.wav
 
+# Files that should NOT be included.
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
 package-lock.json
+
+# Files that should BE included.

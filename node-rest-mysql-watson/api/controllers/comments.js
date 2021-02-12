@@ -18,7 +18,7 @@ const get = async ({ params: { commentId } }, response) => {
 
 const create = async ({ body }, response) => {
   try {
-    const inserted = await model.post(body);
+    const inserted = await model.create(body);
     response.set('Location', `/api/v1/comments/${inserted.id}`);
     response.status(201).json(inserted);
   } catch (e) {
@@ -28,7 +28,7 @@ const create = async ({ body }, response) => {
 
 const remove = async ({ params: { commentId } }, response) => {
   try {
-    const affectedRows = await model.destroy(commentId);
+    const affectedRows = await model.remove(commentId);
     response.send({
       message: `${affectedRows} comments successfully deleted`,
       success: true,
