@@ -1,12 +1,12 @@
-module.exports = server => {
-    const controller = server.controllers.comments;
+const { Router } = require('express');
+const controller = require('../controllers/comments');
 
-    server.route('/api/v1/comments')
-        .get(controller.list)
-        .post(controller.save);
+const router = Router();
 
-    server.route('/api/v1/comments/:commentId')
-        .delete(controller.delete)
-        .put(controller.update)
+router.get('/', controller.list);
+router.get('/:commentId', controller.get);
+router.post('/', controller.create);
+router.delete('/:commentId', controller.remove);
+// router.put('/:commentId', controller.update);
 
-}
+module.exports = router;

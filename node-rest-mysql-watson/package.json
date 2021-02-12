@@ -2,7 +2,7 @@
   "name": "node-rest-mysql-watson",
   "version": "1.0.0",
   "description": "A example of Node.js, Rest APIs and MySQL integration",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
     "config": "^3.3.3",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "ibm-watson": "^6.0.2",
     "mysql": "^2.18.1",

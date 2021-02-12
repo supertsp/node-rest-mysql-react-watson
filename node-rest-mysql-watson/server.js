@@ -1,54 +1,33 @@
-const server = require('./config/express')();
-const port = server.get('port');
+const express = require('express');
+const cors = require('cors');
+const comments = require('./api/routes/comments');
+const connection = require('./libs/connection');
+const textToSpeech = require('./libs/textToSpeech');
 
-//IBM WATSON
-const fs = require('fs');
-const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
-const { IamAuthenticator } = require('ibm-watson/auth');
+require('dotenv').config();
 
-const textToSpeech = new TextToSpeechV1({
-  authenticator: new IamAuthenticator({
-    apikey: 'ERjFGLJ68Xg8ABj1mED66Pi_hNLlvtm10AhN7nQ36031',
-  }),
-  serviceUrl: 'https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/edfd6ca1-9a4e-41ad-9184-e2404a0fcf52',
+const server = express();
+
+server.use(express.json());
+server.use(cors());
+server.use(express.static('./public'));
+server.use(process.env.API_BASE_PATH, comments);
+
+connection.define({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  schema: process.env.MYSQL_SCHEMA,
+  port: process.env.MYSQL_PORT,
 });
 
-const synthesizeParams = {
-  text: 'Olá Jovem Mundo!',
-  accept: 'audio/wav',
-  voice: 'pt-BR_IsabelaV3Voice',
-};
+textToSpeech.define(
+  process.env.TEXT_TO_SPEECH_APIKEY,
+  process.env.TEXT_TO_SPEECH_URL,
+  process.env.TEXT_TO_SPEECH_VOICE,
+  process.env.TEXT_TO_SPEECH_ACCEPT,
+);
 
-console.log("\n\nIniciando download da voz");
-
-
-textToSpeech.synthesize(synthesizeParams)
-  .then(response => {
-    // only necessary for wav formats,
-    // otherwise `response.result` can be directly piped to a file
-    return textToSpeech.repairWavHeaderStream(response.result);
-  })
-  .then(buffer => {
-    fs.writeFileSync('./voices/vozComentario1.wav', buffer);
-    console.log("Voz salva em: ./voices/vozComentario1.wav");
-  })
-  .catch(err => {
-    console.log('error:', err);
-  });
-
-
-
-  //API SERVER
-  server.listen(port, () => {
-    console.log(`\n\nServer listening at \"${port}\" the port\n\n`);
-  });
-
-
-
-
-
-
-
-
-
-
+const runningServer = server.listen(process.env.SERVER_PORT ?? 8080, () => {
+  console.log(`\n\nServer listening at http://localhost:${runningServer.address().port}\n `);
+});

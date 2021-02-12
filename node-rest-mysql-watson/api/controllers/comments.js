@@ -1,81 +1,46 @@
-const { request, response } = require("express");
-const MySql = require('../../libs/MySql');
+const model = require('../models/comments');
 
-module.exports = server => {
-    // const commentsDB = require('../data/comments.json');
-    // const commentsDB = server.data.comments;
-    const controller = {};
-    
-    controller.list = (request, response) => {
-        console.log(`\n${(new Date()).toJSON().replace('T', ' ')} - Access via GET: ${request.url}`);
+const list = async (request, response) => {
+  try {
+    response.send(await model.list());
+  } catch (e) {
+    response.status(500).send(e.message);
+  }
+};
 
-        MySql.executeQuery(`SELECT * FROM comments`)
-            .then(result => {    
-                const commentsDB = {
-                    data: result
-                }
+const get = async ({ params: { commentId } }, response) => {
+  try {
+    response.send(await model.get(commentId));
+  } catch (e) {
+    response.status(500).send(e.message);
+  }
+};
 
-                response.status(200).json(commentsDB);
-            });
-    }
+const create = async ({ body }, response) => {
+  try {
+    const inserted = await model.post(body);
+    response.set('Location', `/api/v1/comments/${inserted.id}`);
+    response.status(201).json(inserted);
+  } catch (e) {
+    response.status(500).send(e.message);
+  }
+};
 
-    controller.save = (request, response) => {
-        console.log(`\n${(new Date()).toJSON().replace('T', ' ')} - Access via POST: ${request.url}`);
+const remove = async ({ params: { commentId } }, response) => {
+  try {
+    const affectedRows = await model.destroy(commentId);
+    response.send({
+      message: `${affectedRows} comments successfully deleted`,
+      success: true,
+    });
+  } catch (e) {
+    response.status(500).send(e.message);
+  }
+};
 
-        MySql.executeQuery(`INSERT INTO comments (id, text, audio) VALUES (NULL, '${request.body.text}', null)`)
-            .then(result => {
-                if (result.insertId && result.insertId > 0) {
-                    MySql.executeQuery(`SELECT * FROM comments as c WHERE c.id = (SELECT MAX(id) FROM comments)`)
-                    .then(subResult => {
-                        response.status(201).json(subResult[0]);
-                    });
-                }                
-            });
-    }
-
-    controller.delete = (request, response) => {
-        console.log(`\n${(new Date()).toJSON().replace('T', ' ')} - Access via DELETE: ${request.url}`);
-
-        const { commentId } = request.params;
-
-        MySql.executeQuery(`DELETE FROM comments WHERE comments.id = ${commentId}`)
-            .then(result => {    
-                if (result.affectedRows && result.affectedRows > 0) {
-                    response.status(200).json({
-                        message: 'Comment successfully deleted',
-                        success: true
-                    });
-                }
-                else {
-                    response.status(404).json({
-                        message: 'Comment not found in database',
-                        success: false
-                    });
-                }
-            });
-    }
-
-    controller.update = (request, response) => {
-        console.log(`\n${(new Date()).toJSON().replace('T', ' ')} - Access via PUT: ${request.url}`);
-
-        const { commentId } = request.params;
-        
-        MySql.executeQuery(`UPDATE comments SET text = '${request.body.text}' WHERE comments.id = ${commentId}`)
-            .then(result => {    
-                if (result.affectedRows && result.affectedRows > 0) {                   
-                    response.status(200).json({
-                        message: 'Comment successfully updated',
-                        success: true
-                    });
-                }
-                else {
-                    response.status(404).json({
-                        message: 'Comment not found in database',
-                        success: false
-                    });
-                }
-            });        
-    }
-  
-    return controller;
+module.exports = {
+  list,
+  get,
+  create,
+  remove,
 }
