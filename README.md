@@ -22,9 +22,9 @@ npm start
 ```
 Agora os seguintes enpoints estarão disponíveis:
 * GET::[http://localhost:8080/api/v1/comments](http://localhost:8080/api/v1/comments): Listar
+* GET::[http://localhost:8080/api/v1/comments/idComment](http://localhost:8080/api/v1/comments): Procurar
 * POST::[http://localhost:8080/api/v1/comments](http://localhost:8080/api/v1/comments): Criar
 * DELETE::[http://localhost:8080/api/v1/comments/idComment](http://localhost:8080/api/v1/comments/idComment): Apagar
-* UPDATE::[http://localhost:8080/api/v1/comments/idComment](http://localhost:8080/api/v1/comments/idComment): Atualizar
 
 
 
